@@ -20,37 +20,37 @@ In order to test the Ionic v2 app we're going to create, you need a Cloud App al
 
 ## Creating an empty project with it's Cloud App
 Go to RHMAP Studio and then to 'Projects', we're going to create a new 'Empty Project'. You can search 'empty' at the search field to find 'Empty Project template'. Please, give your project a name and click 'Create'.
-![](pictures/ionic_v2-03.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-03.png)
 Now we're going to create a Cloud App, please go ahead and click on the '+' plus sign. You should see something like the next picture.
-![](pictures/ionic_v2-05.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-05.png)
 Click on 'Create New' and then choose 'Cloud App' as the app template, then choose a name for your cloud app.
-![](pictures/ionic_v2-06.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-06.png)
 Finally let's deploy the app and make sure it works as expected. In the next picture you can see that the app is Stopped (upper right drop down).
-![](pictures/ionic_v2-07.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-07.png)
 Now please click on 'Deploy' (cloud icon on the left) and then click on 'Deploy Cloud App' (make sure the chosen run time is Node.js - 4.4.3)
-![](pictures/ionic_v2-08.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-08.png)
 After some seconds the app should be deployed and the upper righ dropdown should be green. Now click on the 'Current Host' link (just one item up the Node js runtime dropdown) and add '/hello' to the url, the result should look like the image below.
-![](pictures/ionic_v2-09.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-09.png)
 
 ## Creating an Ionic v2 App
 Now that the Cloud App is up and running, let's create our Ionic v2 App. To do so, please go back to the project view. Or go to Projects, and look for your project, as in the next pic.
-![](pictures/ionic_v2-10.png) 
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-10.png) 
 
 Click on the '+' plus sign on the 'Apps' area and then on 'Create New App'.
-![](pictures/ionic_v2-11.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-11.png)
 
 Select 'Cordova' and give your app a name.
-![](pictures/ionic_v2-14.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-14.png)
 Choose git as the source of our template code and fill the fields with:
 
 - Git URL: https://github.com/feedhenry-staff/quickstart-ionic-v2-tabs
 - Git Branch: master
 
-![](pictures/ionic_v2-17.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-17.png)
 
 After clicking on 'Import and Move on to Integration' you should get to the 'Details' area of your new app where a wizzard will explain you some details about importing the SDK, here you just have to click 'Next' until done.
-![](pictures/ionic_v2-18.png)
-![](pictures/ionic_v2-19.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-18.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-19.png)
 
 So far (hopefully) you have imported the template and can proceed to the next section.
 
@@ -118,11 +118,11 @@ Running 'ionic serve' usually  run your browser automatically pointing to the lo
 
 To see if the test application works properly, please type in a name and click on 'Say Hello From The Cloud'.
 
-![](pictures/ionic_v2-20.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-20.png)
 
 You should get an answer like this.
 
-![](pictures/ionic_v2-21.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-21.png)
 
 ## Uploading the compiled version of the Ionic v2 app
 In general (take the Ionic v1 [template](https://github.com/feedhenry-templates/quickstart-ionic-app) for example) once you're satisfied with your local work you would commit and push your changes using git. In this case and because Ionic v2 tooling requires Node.js 6 the process is a bit different.
@@ -189,6 +189,6 @@ To git.tom.redhatmobile.com:techlab/Ionic-v2-Test-Borrar.git
 
 Now it's time to go back to Studio to the 'Details' area and see if our app works on the simulator. Now that the 'www' folder in RHMAP constains the JS version of our Ionic 2 Typescript code, you should see the following.
 
-![](pictures/ionic_v2-23.png)
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-23.png)
 
 
