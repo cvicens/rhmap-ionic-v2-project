@@ -14,26 +14,26 @@ Prerequisites:
 * Cordova 5.0+
 * Access to a RHMAP instance where you can create and run client and cloud apps
 
-# Setting app the test environment
+# Setting app the environment
 
 In order to test the Ionic v2 app we're going to create, you need a Cloud App already running or create a new one. For the sake of completeness we're going to create a new one here, but it's optional, you could use an already created Cloud App in one of your projects.
 
-## Creating an empty project with it's Cloud App
+## Creating an empty project with its Cloud App
 Go to RHMAP Studio and then to 'Projects', we're going to create a new 'Empty Project'. You can search 'empty' at the search field to find 'Empty Project template'. Please, give your project a name and click 'Create'.
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-03.png)
 Now we're going to create a Cloud App, please go ahead and click on the '+' plus sign. You should see something like the next picture.
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-05.png)
 Click on 'Create New' and then choose 'Cloud App' as the app template, then choose a name for your cloud app.
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-06.png)
-Finally let's deploy the app and make sure it works as expected. In the next picture you can see that the app is Stopped (upper right drop down).
+Finally let's deploy the app and make sure it works as expected. In the next picture you can see the app is 'Stopped' (upper right dropdown).
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-07.png)
 Now please click on 'Deploy' (cloud icon on the left) and then click on 'Deploy Cloud App' (make sure the chosen run time is Node.js - 4.4.3)
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-08.png)
-After some seconds the app should be deployed and the upper righ dropdown should be green. Now click on the 'Current Host' link (just one item up the Node js runtime dropdown) and add '/hello' to the url, the result should look like the image below.
+After some seconds the app should be deployed and the upper right dropdown should be green. Now click on the 'Current Host' link (just one item up the Node js runtime dropdown) and add '/hello' to the url, the result should look like the image below.
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-09.png)
 
 ## Creating an Ionic v2 App
-Now that the Cloud App is up and running, let's create our Ionic v2 App. To do so, please go back to the project view. Or go to Projects, and look for your project, as in the next pic.
+Now that the Cloud App is up and running, let's create our Ionic v2 App. To do so, please go back to the project view. Or go to Projects, and look for your project, as in the next picture.
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-10.png) 
 
 Click on the '+' plus sign on the 'Apps' area and then on 'Create New App'.
@@ -54,14 +54,15 @@ After clicking on 'Import and Move on to Integration' you should get to the 'Det
 
 So far (hopefully) you have imported the template and can proceed to the next section.
 
-## Setting up the environment to work locally with our new App
-What we're going to do is simple, clone the app, install npm packages and run the app locally.
+## Working locally with our new App
+Here we're going to clone the app, install npm packages and finally run the app locally.
 
 **Cloning the app**
 Clonig the your app requires that you have your SSH public key uploaded to your RHMAP enviroment, if not please follow [this](https://access.redhat.com/documentation/en-us/red_hat_mobile_application_platform_hosted/3/html/local_development_guide/ssh-key-setup) guide.
-Assuming you have your SSH configuration set up, go back to Studio and to your new Ionic v2 App, at the 'Details' page find the 'Git Clone URL' item, at the end. Copy the git url, open a terminal window and change dir to a folder of your choice.
+Assuming you have your SSH configuration set up, go back to Studio and to your new Ionic v2 App, at the 'Details' page find the 'Git Clone URL' item at the end. Copy the git url, open a terminal window and change dir to a folder of your choice.
 
 ```
+
 $ mkdir ionic2-test
 $ cd ionic2-test
 $ git clone git@git.tom.redhatmobile.com:xyz/Ionic-v2-Test-Ionic-v2-Test-2.git
@@ -74,6 +75,7 @@ remote: Compressing objects: 100% (127/127), done.
 remote: Total 139 (delta 5), reused 98 (delta 2)
 Receiving objects: 100% (139/139), 4.34 MiB | 754.00 KiB/s, done.
 Resolving deltas: 100% (5/5), done.
+
 ```
 
 **Installing npm packages**
@@ -93,7 +95,7 @@ $ npm install
 
 ```
 
-## Running the app locally
+**Running the app locally**
 We're going to use the command 'ionic serve' to run the app locally, this command starts up an http service (normally at port 8100) so that we can test the app in a browser (in this case we're not going to use any Cordova plugin so testing in a browser is enough).
 
 Now please go back to the terminal window and change to the folder where you have prevously run 'npm install' and run 'ionic serve'
@@ -124,12 +126,19 @@ You should get an answer like this.
 
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-21.png)
 
-## Uploading the compiled version of the Ionic v2 app
+**Relevant pieces of code**
+Here are some pieces of code worth having a look:
+
+* **src/services/fh.service.ts:** Angular service 'FHService' to call services/APIs in RHMAP, it uses the RHMAP Javascript SDK
+* **src/pages/home.ts:** here you'll find the code that links the 'Say Hello From The Cloud' button with 'FHService'
+* **src/app/app.module.ts:** here is where our Angular service 'FHService' is added as a provider so that it can be used in any page/component or our app
+
+## Uploading the compiled version of the app
 In general (take the Ionic v1 [template](https://github.com/feedhenry-templates/quickstart-ionic-app) for example) once you're satisfied with your local work you would commit and push your changes using git. In this case and because Ionic v2 tooling requires Node.js 6 the process is a bit different.
 
 First, you should have noticed that 'ionic serve' compiles (or transpiles) your source code ('src' folder) and generates the usual 'www'. As a general rule you wouldn't need to commit/push the 'www' folder to RHMAP because it should be generated in the platform everytime you push your changes, but this is needed as of today(*) so let's be sure this folder is added, committed and pushed along with all the changes you had made to the code of our app.
 
-(*) Note: This is an interim process in next releases it won't be necessary to commit/push 'www' folder, it'll be generated.
+(*) Note: This is an interim process and in next releases of RHMAP it could change so that it won't be necessary to commit/push the 'www' folder.
 
 Now, please go to the terminal window and let's check if the 'www' folder is being tracked or not. You should see the following. If not, please check that 'www' is in your local folder and also if .gitignored contains 'www'.
 
@@ -191,4 +200,11 @@ Now it's time to go back to Studio to the 'Details' area and see if our app work
 
 ![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-23.png)
 
+Once your app is working properly in the simulator why not building the binary for Android or iOS? Go 'Build', choose your target OS, select your [credentials](https://access.redhat.com/documentation/en-us/red_hat_mobile_application_platform_hosted/3/html/product_features/projects-apps-and-services#credentials) bundle and click 'Build'.
 
+![](https://github.com/cvicens/rhmap-ionic-v2-project/raw/master/pictures/ionic_v2-25.png)
+
+After a while a modal window will pop up with a QR code and download url so that you'll be able to install your new Ionic v2 app in your device. Go scan that code!
+
+# Recap
+By following this tutorial you should have been able to quickly create an Ionic v2 App that works against your RHMAP enviroment, run it locally and finally build the binary for Android/iOS.
